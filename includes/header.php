@@ -86,7 +86,7 @@
         <li id="navReport"><a href="report.php"> <i class="glyphicon glyphicon-check"></i> Report </a></li>
 		<?php } ?>
 		<?php  if(isset($_SESSION['userId']) && $_SESSION['userType']==1) { ?>
-        <li id="navPurchase"><a href="purchases.php"> <i class="glyphicon glyphicon-plus"></i> Purchases</a></li>
+        <li id="navPurchase"><a href="purchases.php"> <i class="glyphicon glyphicon-shopping-cart"></i> Purchases</a></li>
 		<?php } ?>
         <li class="dropdown" id="navSetting">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i class="glyphicon glyphicon-user"></i> <span class="caret"></span></a>
