@@ -2,7 +2,7 @@
 
 require_once 'core.php';
 
-$sql = "SELECT order_id, order_date, client_name, client_contact, payment_status,grand_total,paid,due FROM orders WHERE order_status = 1 GROUP BY order_id DESC";
+$sql = "SELECT order_id, order_date, client_name, client_contact, payment_status,grand_total,paid,due,invoiceId FROM orders WHERE order_status = 1 GROUP BY order_id DESC";
 $result = $connect->query($sql);
 
 
@@ -43,6 +43,10 @@ if($result->num_rows > 0) {
 
 	    <li><a type="button" data-toggle="modal" id="paymentOrderModalBtn" data-target="#paymentOrderModal" onclick="paymentOrder('.$orderId.')"> <i class="glyphicon glyphicon-save"></i> Payment</a></li>
 
+      <li><a type="button" data-toggle="modal" id="paymentPrint" onclick="printOrder('.$orderId.')"> <i class="glyphicon glyphicon-save"></i> Normal Print</a></li>
+
+      <li><a type="button" data-toggle="modal" id="paymentPrint" onclick="printOrderFull('.$orderId.')"> <i class="glyphicon glyphicon-save"></i> Full Print</a></li>
+
 	    <li><a type="button" data-toggle="modal" data-target="#removeOrderModal" id="removeOrderModalBtn" onclick="removeOrder('.$orderId.')"> <i class="glyphicon glyphicon-trash"></i> Remove</a></li>
 	  </ul>
 	</div>';
@@ -62,6 +66,9 @@ if($result->num_rows > 0) {
     //due
     $row[7],
     $paymentStatus,
+
+    //invoiceId
+    $row[8],
  		// button
  		$button
  		);

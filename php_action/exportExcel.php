@@ -21,16 +21,6 @@ if(isset($_SESSION['userId']) && $_SESSION['userType']==1) {
     $writer = new XLSXWriter();
     $writer->setAuthor('Some Author');
 
-        // //Cell Marge code//
-        // $header = array("string","string","string","string","string");
-        // $row1 = array("Jonaki Motors");
-        // $sheet_name = 'Sheet1';
-        // $writer = new XLSXWriter();
-        // $writer->writeSheetHeader($sheet_name, $header, $suppress_header_row = true);
-        // $writer->writeSheetRow($sheet_name, $row1);
-        // $writer->markMergedCell($sheet_name, $start_row=0, $start_col=0, $end_row=0, $end_col=4);
-
-
     $rows = array('Jonaki Motors','','','','','','Date: ',date('d-m-Y'));
     $writer->writeSheetRow('Sheet1', $rows);
     $rows = array('Product Report','','','','','','Download by:',$addedBy);
@@ -38,12 +28,12 @@ if(isset($_SESSION['userId']) && $_SESSION['userType']==1) {
     $rows = array('');
     $writer->writeSheetRow('Sheet1', $rows);
 
-    $rows = array('SR.N.', 'Brand Name', 'Category Name', 'Product Name', 'Parts Number', 'Rate', 'Quantity', 'Product Price', 'Status');
+    $rows = array('SR.N.', 'Brand Name', 'Category Name', 'Product Name', 'Parts Number','Buy Rate', 'Sell Rate', 'Quantity','Unit', 'Product Buy Price', 'Product Sell Price', 'Status');
     $writer->writeSheetRow('Sheet1', $rows);
 
     $sql = "SELECT product.product_id, product.product_name, product.product_image, product.brand_id,
-            product.categories_id, product.quantity, product.rate, product.active, product.status,
-            brands.brand_name, categories.categories_name,product.part_number FROM product
+            product.categories_id, product.quantity,product.buyRate, product.rate, product.active, product.status,
+            brands.brand_name, categories.categories_name,product.part_number,product.unit FROM product
             INNER JOIN brands ON product.brand_id = brands.brand_id
             INNER JOIN categories ON product.categories_id = categories.categories_id
             WHERE product.status = 1 AND product.active = 1";
@@ -52,23 +42,37 @@ if(isset($_SESSION['userId']) && $_SESSION['userType']==1) {
         // Output each row of the data
         $active = "";
         $Total=0;
+        $TotalBuyRate=0;
+        $buyRateTotal=0;
+        $sellRateTotal=0;
+        $quantitytotal = 0;
 
         $i=0;
         while($row = $result->fetch_assoc()){
           $Qun = $row["quantity"];
           $Rate = $row["rate"];
+          $buyRate = $row["buyRate"];
+
+          $buyRateTotal += $row["buyRate"];
+          $sellRateTotal += $row["rate"];
+          $quantitytotal += $row["quantity"];
+
           $TotalProductPrice = $Qun * $Rate;
+          $TotalBuyProductPrice = $Qun * $buyRate;
+
           $Total += $TotalProductPrice;
+          $TotalBuyRate += $TotalBuyProductPrice;
+
           if($row["status"] == 1) {
             $active = "Available";
           } else {
             $active = "Not Available";
           }
           $i++;
-            $rows = array($i,$row["brand_name"],$row["categories_name"], $row["product_name"],$row["part_number"],$row["rate"],$row["quantity"],$TotalProductPrice,$active);
+            $rows = array($i,$row["brand_name"],$row["categories_name"], $row["product_name"],$row["part_number"],$row["buyRate"],$row["rate"],$row["quantity"],$row["unit"],$TotalBuyProductPrice,$TotalProductPrice,$active);
             $writer->writeSheetRow('Sheet1', $rows);
         }
-        $rows = array("","","","","","","Total:", $Total);
+        $rows = array("","","","","Total:",$buyRateTotal,$sellRateTotal,$quantitytotal,"",$TotalBuyRate, $Total);
         $writer->writeSheetRow('Sheet1', $rows);
     }else{
       $rows = array("No Data Found");
@@ -79,5 +83,5 @@ if(isset($_SESSION['userId']) && $_SESSION['userType']==1) {
     exit(0);
 
 }else {
-    header('location: http://localhost/inventory-management-system/index.php');
+    header('location: ../index.php');
 }

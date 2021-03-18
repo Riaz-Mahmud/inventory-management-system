@@ -3,7 +3,7 @@
 <?php
 
 $sql = "SELECT product.product_id,product.brand_id,
- 		product.categories_id, product.quantity, product.rate, product.active, product.status,
+ 		product.categories_id, product.quantity,product.buyRate, product.rate, product.active, product.status,
  		brands.brand_name, categories.categories_name FROM product
 		INNER JOIN brands ON product.brand_id = brands.brand_id
 		INNER JOIN categories ON product.categories_id = categories.categories_id
@@ -13,11 +13,17 @@ $result = $connect->query($sql);
 
 if($result->num_rows > 0) {
  $Total=0;
+ $TotalBuyRate=0;
  while($row = $result->fetch_array()) {
    $Qun = $row[3];
-   $Rate = $row[4];
-   $TotalProductPrice = $Qun * $Rate;
+   $sellRate = $row[5];
+   $buyRate = $row[4];
+
+   $TotalProductPrice = $Qun * $sellRate;
+   $TotalBuyProductPrice = $Qun * $buyRate;
+
    $Total += $TotalProductPrice;
+   $TotalBuyRate += $TotalBuyProductPrice;
  }
 }
 ?>
@@ -30,7 +36,7 @@ if($result->num_rows > 0) {
 		  <li><a href="dashboard.php">Home</a></li>
 		  <li class="active">Product Report</li>
 		</ol>
-    <a href="php_action/exportExcel.php" class="btn btn-success" style="float: right; margin-top:5px;margin-right:5px;" title="Click to export">Export</a>
+    <a href="php_action/exportExcel.php" class="btn btn-success" style="float: right; margin-top:4px;margin-right:5px;" title="Click to export">Export</a>
 		<div class="panel panel-default">
 			<div class="panel-heading">
 				<div class="page-heading"> <i class="glyphicon glyphicon-edit"></i> Manage Product</div>
@@ -45,7 +51,8 @@ if($result->num_rows > 0) {
 							<th style="width:10%; ">Photo</th>
 							<th>Product Name</th>
 							<th>Parts Number</th>
-							<th>Rate</th>
+							<th>Buy Rate</th>
+                            <th>Sell Rate</th>
 							<th>Quantity</th>
 							<th>Product Price</th>
 							<th>Status</th>
@@ -61,8 +68,12 @@ if($result->num_rows > 0) {
 								</thead>
 								<tbody>
 									<tr>
-										<th >Total Price Quantity Left</th>
+										<th >Total Sell Price Quantity Left</th>
 										<th style=" text-align: right;"><?php echo $Total ." BDT"; ?></th>
+									</tr>
+									<tr>
+										<th >Total Buy Price Quantity Left</th>
+										<th style=" text-align: right;"><?php echo $TotalBuyRate ." BDT"; ?></th>
 									</tr>
 							</tbody>
 							</table>

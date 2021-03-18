@@ -10,7 +10,9 @@ if($_POST) {
 	$partNumber     = $_POST['partNumber'];
   // $productImage 	= $_POST['productImage'];
   $quantity 			= $_POST['quantity'];
+	$unit 					= $_POST['unit'];
   $rate 					= $_POST['rate'];
+	$buyRate 					= $_POST['buyRate'];
   $brandName 			= $_POST['brandName'];
   $categoryName 	= $_POST['categoryName'];
   $productStatus 	= $_POST['productStatus'];
@@ -18,8 +20,8 @@ if($_POST) {
 
 
 if($_FILES['productImage']['name'] == "") {
-	$sql = "INSERT INTO product (product_name, brand_id, categories_id, quantity, rate, active, status,part_number,added_by)
-	VALUES ('$productName', '$brandName', '$categoryName', '$quantity', '$rate', '$productStatus', 1,'$partNumber','$addedBy')";
+	$sql = "INSERT INTO product (product_name, brand_id, categories_id, quantity, unit, rate,buyRate, active, status,part_number,added_by)
+	VALUES ('$productName', '$brandName', '$categoryName', '$quantity', '$unit', '$rate', '$buyRate', '$productStatus', 1,'$partNumber','$addedBy')";
 
 	if($connect->query($sql) === TRUE) {
 
@@ -40,8 +42,8 @@ if($_FILES['productImage']['name'] == "") {
 		if(is_uploaded_file($_FILES['productImage']['tmp_name'])) {
 			if(move_uploaded_file($_FILES['productImage']['tmp_name'], $url)) {
 
-				$sql = "INSERT INTO product (product_name, product_image, brand_id, categories_id, quantity, rate, active, status,part_number,added_by)
-				VALUES ('$productName', '$url', '$brandName', '$categoryName', '$quantity', '$rate', '$productStatus', 1,'$partNumber','$addedBy')";
+				$sql = "INSERT INTO product (product_name, product_image, brand_id, categories_id, quantity,unit, rate, buyRate, active, status,part_number,added_by)
+				VALUES ('$productName', '$url', '$brandName', '$categoryName', '$quantity', '$unit','$rate', '$buyRate', '$productStatus', 1,'$partNumber','$addedBy')";
 
 				if($connect->query($sql) === TRUE) {
 

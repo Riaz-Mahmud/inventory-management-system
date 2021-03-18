@@ -27,8 +27,10 @@
 							<th style="width:10%;">Photo</th>
 							<th>Product Name</th>
 							<th>Parts Number</th>
-							<th>Rate</th>
+							<th>Buy Rate</th>
+							<th>Sell Rate</th>
 							<th>Quantity</th>
+							<th>Unit</th>
 							<th>Brand</th>
 							<th>Category</th>
 							<th>Status</th>
@@ -96,11 +98,30 @@
 				    </div>
 	        </div> <!-- /form-group-->
 
-	        <div class="form-group">
-	        	<label for="rate" class="col-sm-3 control-label">Rate:<mark>*</mark></label>
+					<div class="form-group">
+	        	<label for="unit" class="col-sm-3 control-label">Unit: </label>
 	        	<label class="col-sm-1 control-label">: </label>
 				    <div class="col-sm-8">
-				      <input type="text" class="form-control" id="rate" placeholder="Rate" name="rate" autocomplete="off">
+				      <select class="form-control" id="unit" name="unit">
+				      	<option value="SET">SET</option>
+				      	<option value="PS">PS</option>
+				      </select>
+				    </div>
+	        </div> <!-- /form-group-->
+
+	        <div class="form-group">
+	        	<label for="rate" class="col-sm-3 control-label">Sell Rate:<mark>*</mark></label>
+	        	<label class="col-sm-1 control-label">: </label>
+				    <div class="col-sm-8">
+				      <input type="text" class="form-control" id="rate" placeholder="Sell Rate" name="rate" autocomplete="off">
+				    </div>
+	        </div> <!-- /form-group-->
+
+					<div class="form-group">
+	        	<label for="buyRate" class="col-sm-3 control-label">Buy Rate:<mark>*</mark></label>
+	        	<label class="col-sm-1 control-label">: </label>
+				    <div class="col-sm-8">
+				      <input type="text" class="form-control" id="buyRate" placeholder="Buy Rate" name="buyRate" autocomplete="off">
 				    </div>
 	        </div> <!-- /form-group-->
 
@@ -268,10 +289,29 @@
 			        </div> <!-- /form-group-->
 
 			        <div class="form-group">
-			        	<label for="editRate" class="col-sm-3 control-label">Rate:<mark>*</mark></label>
+			        	<label for="editRate" class="col-sm-3 control-label">Sell Rate:<mark>*</mark></label>
 			        	<label class="col-sm-1 control-label">: </label>
 						    <div class="col-sm-8">
-						      <input type="text" class="form-control" id="editRate" placeholder="Rate" name="editRate" autocomplete="off">
+						      <input type="text" class="form-control" id="editRate" placeholder="Sell Rate" name="editRate" autocomplete="off">
+						    </div>
+			        </div> <!-- /form-group-->
+
+							<div class="form-group">
+			        	<label for="editBuyRate" class="col-sm-3 control-label">Buy Rate:<mark>*</mark></label>
+			        	<label class="col-sm-1 control-label">: </label>
+						    <div class="col-sm-8">
+						      <input type="text" class="form-control" id="editBuyRate" placeholder="Buy Rate" name="editBuyRate" autocomplete="off">
+						    </div>
+			        </div> <!-- /form-group-->
+
+							<div class="form-group">
+			        	<label for="editUnit" class="col-sm-3 control-label">Unit: </label>
+			        	<label class="col-sm-1 control-label">: </label>
+						    <div class="col-sm-8">
+						      <select class="form-control" id="editUnit" name="editUnit">
+						      	<option value="SET">SET</option>
+						      	<option value="PS">PS</option>
+						      </select>
 						    </div>
 			        </div> <!-- /form-group-->
 

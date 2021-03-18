@@ -9,13 +9,15 @@ if($_POST) {
 	$productName 		= $_POST['editProductName'];
 	$partsNumber 		= $_POST['editPartsNumber'];
   $quantity 			= $_POST['editQuantity'];
+	$unit 			= $_POST['editUnit'];
   $rate 					= $_POST['editRate'];
+	$buyRate 					= $_POST['editBuyRate'];
   $brandName 			= $_POST['editBrandName'];
   $categoryName 	= $_POST['editCategoryName'];
   $productStatus 	= $_POST['editProductStatus'];
 	$addedBy				=	$_SESSION['userName'];
 
-	$sql = "UPDATE product SET product_name = '$productName',part_number= '$partsNumber', brand_id = '$brandName', categories_id = '$categoryName', quantity = '$quantity', rate = '$rate', active = '$productStatus', status = 1 WHERE product_id = $productId ";
+	$sql = "UPDATE product SET product_name = '$productName',part_number= '$partsNumber',unit= '$unit', brand_id = '$brandName', categories_id = '$categoryName', quantity = '$quantity', rate = '$rate',buyRate = '$buyRate', active = '$productStatus', status = 1 WHERE product_id = $productId ";
 
 	if($connect->query($sql) === TRUE) {
 

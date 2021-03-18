@@ -127,22 +127,11 @@ $(document).ready(function() {
 			var partNumber = $("#partNumber").val();
 			var quantity = $("#quantity").val();
 			var rate = $("#rate").val();
+			var buyRate = $("#buyRate").val();
 			var brandName = $("#brandName").val();
 			var categoryName = $("#categoryName").val();
 			var productStatus = $("#productStatus").val();
 
-
-
-			// if(productImage == "") {
-			// 	$("#productImage").closest('.center-block').after('<p class="text-danger">Product Image field is required</p>');
-			// 	$('#productImage').closest('.form-group').addClass('has-error');
-			//
-			// }	else {
-			// 	// remov error text field
-			// 	$("#productImage").find('.text-danger').remove();
-			// 	// success out for form
-			// 	$("#productImage").closest('.form-group').addClass('has-success');
-			// }	// /else
 
 			if(productName == "") {
 				$("#productName").after('<p class="text-danger">Product Name field is required</p>');
@@ -153,16 +142,6 @@ $(document).ready(function() {
 				// success out for form
 				$("#productName").closest('.form-group').addClass('has-success');
 			}	// /else
-
-			// if(partNumber == "") {
-			// 	$("#partNumber").after('<p class="text-danger">Part Number field is required</p>');
-			// 	$('#partNumber').closest('.form-group').addClass('has-error');
-			// }	else {
-			// 	// remov error text field
-			// 	$("#partNumber").find('.text-danger').remove();
-			// 	// success out for form
-			// 	$("#partNumber").closest('.form-group').addClass('has-success');
-			// }	// /else
 
 			if(quantity == "") {
 				$("#quantity").after('<p class="text-danger">Quantity field is required</p>');
@@ -182,6 +161,16 @@ $(document).ready(function() {
 				$("#rate").find('.text-danger').remove();
 				// success out for form
 				$("#rate").closest('.form-group').addClass('has-success');
+			}	// /else
+
+			if(buyRate == "") {
+				$("#buyRate").after('<p class="text-danger">Rate field is required</p>');
+				$('#buyRate').closest('.form-group').addClass('has-error');
+			}	else {
+				// remov error text field
+				$("#buyRate").find('.text-danger').remove();
+				// success out for form
+				$("#buyRate").closest('.form-group').addClass('has-success');
 			}	// /else
 
 			if(brandName == "") {
@@ -214,7 +203,7 @@ $(document).ready(function() {
 				$("#productStatus").closest('.form-group').addClass('has-success');
 			}	// /else
 
-			if(productName && quantity && rate && brandName && categoryName && productStatus) {
+			if(productName && quantity && rate && buyRate && brandName && categoryName && productStatus) {
 				// submit loading button
 				$("#createProductBtn").button('loading');
 
@@ -351,8 +340,12 @@ function editProduct(productId = null) {
 				$("#editPartsNumber").val(response.part_number);
 				// quantity
 				$("#editQuantity").val(response.quantity);
+				// unit
+				$("#editUnit").val(response.unit);
 				// rate
 				$("#editRate").val(response.rate);
+				// buyRate
+				$("#editBuyRate").val(response.buyRate);
 				// brand name
 				$("#editBrandName").val(response.brand_id);
 				// category name
@@ -367,7 +360,9 @@ function editProduct(productId = null) {
 					var productImage = $("#editProductImage").val();
 					var productName = $("#editProductName").val();
 					var quantity = $("#editQuantity").val();
+					var unit = $("#editUnit").val();
 					var rate = $("#editRate").val();
+					var buyRate = $("#editBuyRate").val();
 					var brandName = $("#editBrandName").val();
 					var categoryName = $("#editCategoryName").val();
 					var productStatus = $("#editProductStatus").val();
@@ -393,6 +388,16 @@ function editProduct(productId = null) {
 						$("#editQuantity").closest('.form-group').addClass('has-success');
 					}	// /else
 
+					if(unit == "") {
+						$("#editUnit").after('<p class="text-danger">Quantity field is required</p>');
+						$('#editUnit').closest('.form-group').addClass('has-error');
+					}	else {
+						// remov error text field
+						$("#editUnit").find('.text-danger').remove();
+						// success out for form
+						$("#editUnit").closest('.form-group').addClass('has-success');
+					}	// /else
+
 					if(rate == "") {
 						$("#editRate").after('<p class="text-danger">Rate field is required</p>');
 						$('#editRate').closest('.form-group').addClass('has-error');
@@ -401,6 +406,16 @@ function editProduct(productId = null) {
 						$("#editRate").find('.text-danger').remove();
 						// success out for form
 						$("#editRate").closest('.form-group').addClass('has-success');
+					}	// /else
+
+					if(buyRate == "") {
+						$("#editBuyRate").after('<p class="text-danger">Rate field is required</p>');
+						$('#editBuyRate').closest('.form-group').addClass('has-error');
+					}	else {
+						// remov error text field
+						$("#editBuyRate").find('.text-danger').remove();
+						// success out for form
+						$("#editBuyRate").closest('.form-group').addClass('has-success');
 					}	// /else
 
 					if(brandName == "") {
@@ -433,7 +448,7 @@ function editProduct(productId = null) {
 						$("#editProductStatus").closest('.form-group').addClass('has-success');
 					}	// /else
 
-					if(productName && quantity && rate && brandName && categoryName && productStatus) {
+					if(productName && quantity && unit && rate && buyRate && brandName && categoryName && productStatus) {
 						// submit loading button
 						$("#editProductBtn").button('loading');
 

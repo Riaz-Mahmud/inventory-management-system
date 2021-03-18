@@ -17,7 +17,7 @@ while ($orderResult = $orderQuery->fetch_assoc()) {
 	$totalDUE += $orderResult['due'];
 }
 
-$lowStockSql = "SELECT * FROM product WHERE quantity <= 3 AND status = 1";
+$lowStockSql = "SELECT * FROM product WHERE quantity <= 2 AND status = 1";
 $lowStockQuery = $connect->query($lowStockSql);
 $countLowStock = $lowStockQuery->num_rows;
 

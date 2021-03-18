@@ -31,9 +31,18 @@ if($_POST) {
 
 
 
-	
+	$sqlInvoice = "SELECT order_id FROM orders GROUP BY order_id DESC LIMIT 1";
+	$resultInvoice = mysqli_query($connect,$sqlInvoice);
+	$rowInvoice = mysqli_fetch_array($resultInvoice);
+	$lastOrderId = 	$rowInvoice['order_id'];
+	if (empty($lastOrderId)) {
+		$invoiceId = 'JK-01';
+	}else {
+		$plusOneInLastOrder = $lastOrderId+1;
+		$invoiceId ='JK-0'.$plusOneInLastOrder;
+	}
 
-	$sql = "INSERT INTO orders (order_month,order_year,order_date, client_name, client_contact, sub_total, vat, total_amount, discount, grand_total, paid, due, payment_type, payment_status, gstn,order_status,user_id) VALUES ('$getMonth','$getYear','$orderDate', '$clientName', '$clientContact', '$subTotalValue', '$vatValue', '$totalAmountValue', '$discount', '$grandTotalValue', '$paid', '$dueValue', $paymentType, $paymentStatus,$gstn, 1,$userid)";
+	$sql = "INSERT INTO orders (invoiceId,order_month,order_year,order_date, client_name, client_contact, sub_total, vat, total_amount, discount, grand_total, paid, due, payment_type, payment_status, gstn,order_status,user_id) VALUES ('$invoiceId','$getMonth','$getYear','$orderDate', '$clientName', '$clientContact', '$subTotalValue', '$vatValue', '$totalAmountValue', '$discount', '$grandTotalValue', '$paid', '$dueValue', $paymentType, $paymentStatus,$gstn, 1,$userid)";
 
 	$order_id;
 	$orderStatus = false;

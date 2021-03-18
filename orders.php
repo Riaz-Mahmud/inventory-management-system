@@ -268,7 +268,7 @@ $dueTotal = $row['dueTotal'];
 						<th>Paid Amounts</th>
 						<th>Due Amounts</th>
 						<th>Payment Status</th>
-
+						<th>Invoice ID</th>
 						<th>Option</th>
 					</tr>
 				</thead>

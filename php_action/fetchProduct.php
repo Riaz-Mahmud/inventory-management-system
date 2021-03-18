@@ -6,7 +6,7 @@ require_once 'core.php';
 
 $sql = "SELECT product.product_id, product.product_name, product.product_image, product.brand_id,
  		product.categories_id, product.quantity, product.rate, product.active, product.status,
- 		brands.brand_name, categories.categories_name,product.part_number FROM product
+ 		brands.brand_name, categories.categories_name,product.part_number,product.unit,product.buyRate FROM product
 		INNER JOIN brands ON product.brand_id = brands.brand_id
 		INNER JOIN categories ON product.categories_id = categories.categories_id
 		WHERE product.status = 1 GROUP BY  product.product_id DESC";
@@ -53,6 +53,8 @@ if($result->num_rows > 0) {
 	$brand = $row[9];
 	$category = $row[10];
 	$partNum = $row[11];
+  $unit = $row[12];
+  $buyRate = $row[13];
 
 	$imageUrl = substr($row[2], 3);
 	$productImage = "<img class='img-round' src='".$imageUrl."' style='height:30px; width:50px;'  />";
@@ -62,16 +64,24 @@ if($result->num_rows > 0) {
  		$productImage,
  		// product name
  		$row[1],
+    //
     $row[11],
- 		// rate
- 		$row[6],
+
+    //buyRate
+    $buyRate,
+
+    // rate
+    $row[6],
+
  		// quantity
  		$row[5],
+    //Unit
+    $row[12],
+ 		// active
  		// brand
  		$brand,
  		// category
  		$category,
- 		// active
  		$active,
  		// button
  		$button
