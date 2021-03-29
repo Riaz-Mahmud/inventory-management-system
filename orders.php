@@ -110,7 +110,7 @@ $dueTotal = $row['dueTotal'];
 			  					<select class="form-control" name="productName[]" id="productName<?php echo $x; ?>" onchange="getProductData(<?php echo $x; ?>)" >
 			  						<option value="">~~SELECT~~</option>
 			  						<?php
-			  							$productSql = "SELECT * FROM product WHERE active = 1 AND status = 1 AND quantity != 0";
+			  							$productSql = "SELECT * FROM product WHERE active = 1 AND status = 1 AND quantity != 0 GROUP BY product_name ASC";
 			  							$productData = $connect->query($productSql);
 
 			  							while($row = $productData->fetch_array()) {
@@ -122,7 +122,7 @@ $dueTotal = $row['dueTotal'];
 			  					</div>
 			  				</td>
 			  				<td style="padding-left:20px;">
-			  					<input type="text" name="rate[]" id="rate<?php echo $x; ?>" autocomplete="off" disabled="true" class="form-control" />
+			  					<input type="text" name="rate[]" id="rate<?php echo $x; ?>" onkeyup="getTotal(<?php echo $x ?>)" autocomplete="off" class="form-control" />
 			  					<input type="hidden" name="rateValue[]" id="rateValue<?php echo $x; ?>" autocomplete="off" class="form-control" />
 			  				</td>
 							<td style="padding-left:20px;">
@@ -375,7 +375,7 @@ $dueTotal = $row['dueTotal'];
 			  					</div>
 			  				</td>
 			  				<td style="padding-left:20px;">
-			  					<input type="text" name="rate[]" id="rate<?php echo $x; ?>" autocomplete="off" disabled="true" class="form-control" value="<?php echo $orderItemData['rate']; ?>" />
+			  					<input type="text" name="rate[]" id="rate<?php echo $x; ?>" onkeyup="getTotal(<?php echo $x ?>)" autocomplete="off" class="form-control" value="<?php echo $orderItemData['rate']; ?>" />
 			  					<input type="hidden" name="rateValue[]" id="rateValue<?php echo $x; ?>" autocomplete="off" class="form-control" value="<?php echo $orderItemData['rate']; ?>" />
 			  				</td>
 							<td style="padding-left:20px;">

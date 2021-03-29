@@ -118,11 +118,20 @@ if($_POST) {
 	<script src="assests/bootstrap/js/bootstrap.min.js"></script>
 </head>
 <body>
+	<!-- <div class="col-md-12" style="margin-center:auto">
+			<div style="">
+					<img src="motorsLogo.png" alt="Paris" class="center">
+			</div>
+	</div> -->
 	<div class="container">
+
 		<div class="row vertical">
 			<div class="col-md-5 col-md-offset-4">
+				<div style="text-align: center">
+					<img src="assests/images/jonakiMotorsLogo.png" alt="Jonaki Motors" style="width:250px;">
+				</div>
 				<div class="panel panel-info">
-					<div class="panel-heading">
+					<div class="panel-heading" style="text-align: center">
 						<h3 class="panel-title">Please Sign in</h3>
 					</div>
 					<div class="panel-body">
